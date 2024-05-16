@@ -2,12 +2,17 @@
 using namespace std;
 
 void insertionSort(int arr[], int size){
+    int comparison = 0;
     for(int i = 1; i<size; i++){
         int temp = arr[i];
         int j = i-1;
         while(j>=0 && arr[j]>temp){
             arr[j+1] = arr[j];
             j--;
+            comparison ++;
+        }
+        if (j>=0){
+            comparison++;
         }
         arr[j+1] = temp;
     }
@@ -17,6 +22,7 @@ void insertionSort(int arr[], int size){
         cout << arr[i]<< " ";
     }
     cout <<"]";
+    cout << "\n\nNumber of comparisions are: " << comparison;
 }
 
 int main(){
