@@ -1,70 +1,66 @@
 #include <iostream>
 using namespace std;
 
-void merge(int A[], int B[], int C[], int m, int n){
-    int i,j,k;
-    i = j = k = 0;
-    int comparison = 0;
+void merge(int arr[], int start, int mid, int end){
+    int i = start;
+    int j = mid + 1;
+    int k = 0;
+    int b[end - start + 1];
 
-    while(i<m && j<n){
-        if(A[i] < B[j]){
-            C[k] = A[i];
+    while(i <= mid && j <= end){
+        if(arr[i] <= arr[j]){
+            b[k] = arr[i];
             i++;
             k++;
         }
         else{
-            C[k] = B[j];
+            b[k] = arr[j];
             j++;
             k++;
         }
-        comparison++;
+
+    }
+    if(i > mid){
+        while(j <= end){
+            b[k] = arr[j];
+            j++;
+            k++;
+        }
+    }
+    else{
+        while(i <= mid){
+            b[k] = arr[i];
+            i++;
+            k++;
+        }
     }
 
-    while(i<m){
-        C[k] = A[i];
-        i++;
-        k++;
-        comparison++;
+    for(int i = 0; i < end - start +1; i++){
+        arr[start + i] = b[i];
     }
-    while(j<n){
-        C[k] = B[j];
-        j++;
-        k++;
-        comparison++;
-    }
-
-    cout << "Merged array: ";
-    cout << "[";
-    for(int i = 0; i<(m+n); i++){
-        cout << C[i]<< " ";
-    }
-    cout <<"]";
-
-    cout << "\n\nNumber of comparisons are: " << comparison;
 }
 
-void singleArrayMerge(int A[], int B[], int start, int mid, int end){
-    int i,j,k;
-    i = start;
-    j = mid + 1;
-    k = start;
-
-    while(i < mid && j < end){
-        
+void mergeSort(int arr[], int start, int end){
+    
+    if(start<end){
+        int mid = (start+end)/2;
+        mergeSort(arr, start, mid);
+        mergeSort(arr, mid + 1, end);
+        merge(arr, start, mid, end);
     }
 }
 
 int main(){
-    int A[] = {1, 3, 5, 7};
-    int B[] = {2, 4, 6, 8};
-    int m = sizeof(A) / sizeof(A[0]);
-    int n = sizeof(B) / sizeof(B[0]);
-    int C[m + n];
-
-    merge(A, B, C, m, n);
-
-    
+    int arr[] = {1,45,6,2,12,53,4,45,57,56,82,3,45,11,6,5,56,13};
+    int size = sizeof(arr)/sizeof(arr[0]);
+    for(int i = 0; i<size; i++){
+        cout << arr[i] << " ";
+    }
+    mergeSort(arr,0,size - 1);
     cout << endl;
+    for(int j = 0; j<size; j++){
+        cout << arr[j] << " ";
+    }
 
     return 0;
 }
