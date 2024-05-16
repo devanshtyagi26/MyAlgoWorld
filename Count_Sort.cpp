@@ -9,11 +9,7 @@ void countSort(int arr[], int size){
         }
     }
     k += 1;
-    int count[k];
-
-    for(int i = 0; i<k; i++){
-        count[i] = 0;
-    }
+    int count[k] = {0};
     
     for(int i = 0; i<size; i++){
         count[arr[i]]++;
@@ -22,11 +18,7 @@ void countSort(int arr[], int size){
         count[i] += count[i-1];
     }
     int j = size-1;
-    int sorted[size];
-
-    for(int i = 0; i<size; i++){
-        sorted[i] = 0;
-    }
+    int sorted[size] = {0};
 
     while(j>=0){
         sorted[--count[arr[j]]] = arr[j];
