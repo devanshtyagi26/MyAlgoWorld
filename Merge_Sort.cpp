@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
 
+int comparison = 0;
+
 void merge(int arr[], int start, int mid, int end){
     int i = start;
     int j = mid + 1;
@@ -18,6 +20,7 @@ void merge(int arr[], int start, int mid, int end){
             j++;
             k++;
         }
+        comparison ++;
 
     }
     if(i > mid){
@@ -25,6 +28,7 @@ void merge(int arr[], int start, int mid, int end){
             b[k] = arr[j];
             j++;
             k++;
+            comparison ++;
         }
     }
     else{
@@ -32,6 +36,7 @@ void merge(int arr[], int start, int mid, int end){
             b[k] = arr[i];
             i++;
             k++;
+            comparison ++;
         }
     }
 
@@ -61,6 +66,6 @@ int main(){
     for(int j = 0; j<size; j++){
         cout << arr[j] << " ";
     }
-
+    cout << "\n\nNumber of comparisons are: " << comparison; 
     return 0;
 }
