@@ -3,10 +3,12 @@ using namespace std;
 
 
 void selectionSort(int arr[], int size){
+    int comparison = 0;
     for(int i = 0; i<size-1; i++){
         int min = i;
         int j = i + 1;
         for(j; j<size; j++){
+            comparison++;
             if(arr[j]<arr[min]){
                 min = j;
             }
@@ -22,6 +24,7 @@ void selectionSort(int arr[], int size){
     for(int i = 0; i<size; i++){
         cout << arr[i] << " ";
     }
+    cout << "\nComparison: "<< comparison << endl;
 }
 
 int main(){
