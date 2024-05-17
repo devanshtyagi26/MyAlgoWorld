@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
 
+int comparison = 0;
+
 void heapify(int arr[], int size, int i){
     int largest = i;
     int leftidx = i*2;
@@ -8,10 +10,13 @@ void heapify(int arr[], int size, int i){
 
     if(leftidx < size && arr[leftidx] > arr[largest]){
         largest = leftidx;
+        comparison++;
     }
     if(rightidx < size && arr[rightidx] > arr[largest]){
         largest = rightidx;
+        comparison++;
     }
+
 
     if(largest != i){
         swap(arr[largest], arr[i]);
@@ -25,7 +30,7 @@ void buildheap(int arr[],int size){
     }
 }
 
-void heapSort(int arr[], int size){
+void heapSortRecursive(int arr[], int size){
     buildheap(arr, size);
     
     if(size == 1){
@@ -33,11 +38,11 @@ void heapSort(int arr[], int size){
     }
     else{
         swap(arr[size], arr[1]);
-        heapSort(arr, size - 1);
-    }   
+        heapSortRecursive(arr, size - 1);
+    }  
 }
 
-void heapSort1(int arr[], int size) {
+void heapSortIterative(int arr[], int size) {
     buildheap(arr, size);
 
     for (int i = size; i > 1; i--) {
@@ -59,7 +64,8 @@ int main(){
     int arr[] = {-1,6,8,3,2,7,56,5,8,11,23,6,46,73,6,6,123,2,3};
     int size = sizeof(arr)/sizeof(arr[0]);
     print(arr,size);
-    heapSort(arr,size - 1);
+    heapSortIterative(arr,size - 1);
     print(arr,size);
+    cout << "\nNumber of comparisons: " << comparison;
     return 0;
 }
