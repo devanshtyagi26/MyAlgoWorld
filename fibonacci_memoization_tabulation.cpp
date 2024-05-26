@@ -16,18 +16,11 @@ int fibMEM(int n, vector<int> &F){
         return n;
     }
 
-    if(F[n-1] != -1 && F[n-2] != -1){
-        return F[n-1] + F[n-2];
+    if(F[n] != -1){
+        return F[n];
     }
-    else if(F[n-1] != -1 && F[n-2] == -1){
-        return F[n-1] + fibMEM(n-2, F);
-    }
-    else if(F[n-1] == -1 && F[n-2] != -1){
-        return fibMEM(n-1, F) + F[n-2];
-    }
-    else{
-        return fibMEM(n-1, F) + fibMEM(n-2, F);
-    }
+
+    return F[n] = fibMEM(n-1, F) + fibMEM(n-2, F);
 }
 
 int fibTAB(int n, vector<int> &F){
