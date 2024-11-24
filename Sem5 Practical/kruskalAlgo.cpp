@@ -88,7 +88,6 @@ int main() {
 
   // Call the function and print the result
   cout << "Minimum weight of this Spanning Tree using Kruskal's Algorithm is: "
-       << minimumSpanningTree(edges, 9);
-
+       << minimumSpanningTree(edges, 9) << endl;
   return 0;
 }
